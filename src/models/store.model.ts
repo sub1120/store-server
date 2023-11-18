@@ -22,6 +22,7 @@ interface IStore extends Document {
   phoneNumber: number;
   email: string;
   timing: IStoreTime[];
+  description: string;
 }
 
 const storeSchema = new mongoose.Schema<IStore>({
@@ -73,6 +74,13 @@ const storeSchema = new mongoose.Schema<IStore>({
       },
     ],
     required: [true, "timing is required"],
+  },
+
+  description: {
+    type: String,
+    required: [true, "Store description is required"],
+    minlength: [8, "Store description should be minimum 8 charactors long"],
+    maxlength: [500, "Store description should be maximum 500 charactors long"],
   },
 });
 

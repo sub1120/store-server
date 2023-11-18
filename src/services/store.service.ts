@@ -6,6 +6,7 @@ const create = async (
   phoneNumber: string,
   email: string,
   timing: string,
+  description: string,
 ) => {
   const store = await StoreModel.create({
     name,
@@ -13,6 +14,7 @@ const create = async (
     phoneNumber,
     email,
     timing,
+    description,
   });
 
   return store;

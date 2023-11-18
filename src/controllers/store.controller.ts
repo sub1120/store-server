@@ -4,11 +4,11 @@ import AppErr from "@/utils/appErr";
 import commonResponse from "@/utils/commonResponse";
 
 const createStore = asyncHandler(async (req, res) => {
-  const { name, address, phoneNumber, email, timing } = req.body;
+  const { name, address, phoneNumber, email, timing, description } = req.body;
 
-  if (!name || !address || !phoneNumber || !email || !timing) {
+  if (!name || !address || !phoneNumber || !email || !timing || !description) {
     throw new AppErr(
-      "Please provide all detail { name, address, phoneNumber, email, timing }",
+      "Please provide all detail { name, address, phoneNumber, email, timing, description }",
       401,
     );
   }
@@ -19,6 +19,7 @@ const createStore = asyncHandler(async (req, res) => {
     phoneNumber,
     email,
     timing,
+    description,
   );
 
   return commonResponse(res, "Store created successfully", store);

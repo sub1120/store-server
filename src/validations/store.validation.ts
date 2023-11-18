@@ -124,6 +124,15 @@ const createStoreSchema = z.object({
       .nonempty({
         message: "timing array cannot be empty",
       }),
+
+    description: z
+      .string({
+        required_error: "Store description is required",
+        invalid_type_error: "Store description should be type string",
+      })
+      .min(8, "Store description must be at least 8 characters")
+      .max(500, "Store description cannot be more than 500 characters")
+      .trim(),
   }),
 });
 
