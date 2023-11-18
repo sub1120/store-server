@@ -1,0 +1,37 @@
+{
+  "name": "Store 1",
+  "address": "Address 1",
+  "phoneNumber": "12345678908",
+  "email": "test@test.com",
+  "timing": {
+    "monday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "tuesday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "wednessday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "thursday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "friday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "saturday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    },
+    "sunday": {
+      "opensAt": { "hours": 12, "minutes": 0, "period": "PM" },
+      "closesAt": { "hours": 9, "minutes": 0, "period": "PM" }
+    }
+  },
+  "description": "Lorem ipsum dolor sit amet consectetur. Sed ac scelerisque sed feugiat pellentesque sed. Erat vitae cras eleifend consequat euismod eu lorem quis ut. Id netus vestibulum id habitasse arcu enim nibh. Ornare viverra risus felis amet odio neque amet in nunc. Id netus vestibulum id habitasse arcu enim nibh. Ornare viverra risus felis amet odio neque amet in nunc. Id netus vestibulum id habitasse arcu enim nibh. Ornare viverra risus felis amet odio neque amet in nunc."
+}

@@ -1,4 +1,3 @@
-import ENUMS from "@/enums";
 import { z } from "zod";
 
 const createStoreSchema = z.object({
@@ -42,87 +41,6 @@ const createStoreSchema = z.object({
       })
       .email({
         message: "Invalid email",
-      }),
-
-    timing: z
-      .array(
-        z.object(
-          {
-            isClosed: z
-              .boolean({
-                invalid_type_error: "opensAt hours must be a boolean",
-              })
-              .optional(),
-            weekDay: z.enum([
-              ...(Object.values(ENUMS.DAYS) as [string, ...string[]]),
-            ]),
-            opensAt: z.object({
-              hours: z
-                .number({
-                  required_error: "opensAt hours is required",
-                  invalid_type_error: "opensAt hours must be a number",
-                })
-                .gte(0, { message: "opensAt hours cannot be less than 0" })
-                .lte(12, { message: "opensAt hours cannot be more than 12" }),
-
-              minutes: z
-                .number({
-                  required_error: "opensAt minutes is required",
-                  invalid_type_error: "opensAt minutes must be a number",
-                })
-                .gte(0, { message: "opensAt minutes cannot be less than 0" })
-                .lte(59, { message: "opensAt minutes cannot be more than 59" }),
-
-              period: z.enum(
-                Object.values(ENUMS.PERIODS) as [string, ...string[]],
-                {
-                  required_error: "opensAt period is required",
-                  invalid_type_error: `opensAt period must be one of ${Object.values(
-                    ENUMS.PERIODS,
-                  )}`,
-                },
-              ),
-            }),
-
-            closesAt: z.object({
-              hours: z
-                .number({
-                  required_error: "closesAt hours is required",
-                  invalid_type_error: "closesAt hours must be a number",
-                })
-                .gte(0, { message: "closesAt hours cannot be less than 0" })
-                .lte(12, { message: "closesAt hours cannot be more than 12" }),
-
-              minutes: z
-                .number({
-                  required_error: "closesAt minutes is required",
-                  invalid_type_error: "closesAt minutes must be a number",
-                })
-                .gte(0, { message: "closesAt minutes cannot be less than 0" })
-                .lte(59, {
-                  message: "closesAt minutes cannot be more than 59",
-                }),
-
-              period: z.enum(
-                Object.values(ENUMS.PERIODS) as [string, ...string[]],
-                {
-                  required_error: "closesAt period is required",
-                  invalid_type_error: `closesAt period must be one of ${ENUMS.PERIODS}`,
-                },
-              ),
-            }),
-          },
-          {
-            invalid_type_error: `Each item in timing array should be an object eg. {"weekDay":"MONDAY', "opensAt": {"hours": 12, "minutes": 0, "period": "PM'}, "closesAt":  {"hours": 9, "minutes": 0, "period": "PM"} }`,
-          },
-        ),
-        {
-          required_error: "timing is required",
-          invalid_type_error: "timing should be an array",
-        },
-      )
-      .nonempty({
-        message: "timing array cannot be empty",
       }),
 
     description: z

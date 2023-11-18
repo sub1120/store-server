@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 enum DAYS {
-  MON = "MONDAY",
-  TUE = "TUESDAY",
-  WED = "WEDNESSDAY",
-  THUS = "THUSRDAY",
-  FRI = "FRIDAY",
-  SAT = "SATURDAY",
-  SUN = "SUN",
+  "Monday",
+  "Tuesday",
+  "Wednessday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
 }
 
 enum PERIODS {
