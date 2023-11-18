@@ -17,4 +17,16 @@ storeRouter
     storeController.createStore,
   );
 
+/**
+ * @ROUTE {{URL}}/api/v1/store
+ */
+
+storeRouter.route("/").get(storeController.getAllStores);
+
+/**
+ * @ROUTE {{URL}}/api/v1/store
+ */
+
+storeRouter.route("/:id").get(storeController.getStoreById);
+
 export default storeRouter;

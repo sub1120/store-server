@@ -20,6 +20,18 @@ const create = async (
   return store;
 };
 
+const getAll = async () => {
+  const stores = await StoreModel.find();
+  return stores;
+};
+
+const getById = async (id: string) => {
+  const store = await StoreModel.findById(id);
+  return store;
+};
+
 export default {
   create,
+  getAll,
+  getById,
 };

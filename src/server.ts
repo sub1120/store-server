@@ -12,8 +12,6 @@ process.on("uncaughtException", (err) => {
 const server = app.listen(CONFIG.PORT, async () => {
   try {
     await connectToDB();
-    console.log("dsd");
-
     console.log(`App is listening at http://localhost:${CONFIG.PORT}`);
   } catch (error) {
     console.error(error);
