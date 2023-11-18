@@ -49,7 +49,7 @@ const getStoreStatus = (storeTiming: {
     period: new Date().getHours() >= 12 ? "PM" : "AM",
   };
 
-  const index = enums.DAYS[currentDay - 1].toLowerCase();
+  const index = enums.DAYS[(currentDay + 1) % 7].toLowerCase();
   const currentDayStoreTiming = storeTiming[index as keyof typeof storeTiming];
 
   let storeCurrentStatus = "";
