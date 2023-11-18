@@ -3,6 +3,8 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 
+import errorMiddleware from "./middlewares/error.middleware";
+import appRouter from "./routes";
 import HTTP_STATUS from "./utils/httpStatus";
 
 const expressApp = express();
@@ -18,6 +20,8 @@ expressApp.use(
     optionsSuccessStatus: HTTP_STATUS.OK,
   }),
 );
+
+expressApp.use("/api/v1", appRouter);
 
 /**
  * @SERVER_STATUS
@@ -40,5 +44,8 @@ expressApp.all("*", (req, res) => {
     message: `Not Found - ${req.method} ${req.originalUrl}`,
   });
 });
+
+// Custom error middleware (⚠️ should always be the last middleware)
+expressApp.use(errorMiddleware);
 
 export default expressApp;
