@@ -10,8 +10,6 @@ export const isLoggedIn = asyncHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     const token = req.header("Authorization")?.replace("Bearer ", "");
 
-    console.log(token);
-
     if (!token) {
       return next(
         new AppErr(

@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 enum DAYS {
+  "Sunday",
   "Monday",
   "Tuesday",
   "Wednessday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 }
 
 enum PERIODS {
