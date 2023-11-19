@@ -14,7 +14,7 @@ storeRouter
   .route("/")
   .post(
     isLoggedIn,
-    validate(storeValidation.createStoreSchema),
+    validate(storeValidation.storeSchema),
     storeController.createStore,
   );
 

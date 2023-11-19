@@ -1,6 +1,7 @@
 import enums from "@/enums";
+import { StoreTimingType, TimeType } from "@/types";
 
-import StoreModel, { IStoreTime, ITime } from "@/models/store.model";
+import StoreModel from "@/models/store.model";
 import compareTime from "@/utils/compareTime";
 
 const create = async (
@@ -34,19 +35,19 @@ const getById = async (id: string) => {
 };
 
 const getStoreStatus = (storeTiming: {
-  monday: IStoreTime;
-  tuesday: IStoreTime;
-  wednessday: IStoreTime;
-  thursday: IStoreTime;
-  friday: IStoreTime;
-  saturday: IStoreTime;
-  sunday: IStoreTime;
+  monday: StoreTimingType;
+  tuesday: StoreTimingType;
+  wednessday: StoreTimingType;
+  thursday: StoreTimingType;
+  friday: StoreTimingType;
+  saturday: StoreTimingType;
+  sunday: StoreTimingType;
 }) => {
   const index = new Date().getDay();
-  const currentTime: ITime = {
+  const currentTime: TimeType = {
     hours: new Date().getHours() % 12,
     minutes: new Date().getMinutes(),
-    period: new Date().getHours() >= 12 ? "PM" : "AM",
+    period: new Date().getHours() >= 12 ? enums.PERIODS.PM : enums.PERIODS.AM,
   };
 
   const currentDay = enums.DAYS[index % 7].toLowerCase();
@@ -54,11 +55,6 @@ const getStoreStatus = (storeTiming: {
     storeTiming[currentDay as keyof typeof storeTiming];
 
   let storeCurrentStatus = "";
-
-  console.log(
-    compareTime(currentTime, currentDayStoreTiming.opensAt),
-    compareTime(currentTime, currentDayStoreTiming.closesAt),
-  );
 
   if (compareTime(currentTime, currentDayStoreTiming.opensAt) === -1) {
     storeCurrentStatus = `Closed - Opens ${currentDayStoreTiming.opensAt.hours} ${currentDayStoreTiming.opensAt.period}`;

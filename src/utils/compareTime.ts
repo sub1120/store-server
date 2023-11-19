@@ -1,6 +1,6 @@
-import { ITime } from "@/models/store.model";
+import { TimeType } from "@/types";
 
-const compareTime = (time1: ITime, time2: ITime) => {
+const compareTime = (time1: TimeType, time2: TimeType) => {
   // PM > AM
   if (time1.period !== time2.period) {
     return time2.period === "PM" ? -1 : 1;
