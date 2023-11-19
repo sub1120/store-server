@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-enum DAYS {
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednessday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-}
+const DAYS = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednessday",
+  "thursday",
+  "friday",
+  "saturday",
+];
 
 enum PERIODS {
   AM = "AM",
