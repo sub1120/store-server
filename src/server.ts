@@ -2,6 +2,8 @@ import app from "./app";
 import CONFIG from "./config";
 import connectToDB from "./config/db";
 
+import "@/config/firebase";
+
 // Handling uncaucght exceptions
 process.on("uncaughtException", (err) => {
   console.error(`Error: ${err.message}`);
