@@ -83,8 +83,8 @@ const getStoreById = asyncHandler(async (req, res) => {
     return commonResponse(res, "Store Not Found", {}, HTTP_STATUS.NOT_FOUND);
   }
 
+  //update store status(open/close)
   const storeStatus = storeService.getStoreStatus(store.timing);
-
   const updatedStore = {
     _id: store._id,
     name: store.name,

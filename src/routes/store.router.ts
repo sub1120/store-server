@@ -11,6 +11,7 @@ const storeRouter = Router();
  * @ROUTE {{URL}}/api/v1/store
  * @METHOD GET
  * @PARAMS NA
+ * @ACCESS Protected
  */
 storeRouter
   .route("/")
@@ -24,6 +25,7 @@ storeRouter
  * @ROUTE {{URL}}/api/v1/store
  * @METHOD GET
  * @PARAMS NA
+ * @ACCESS Protected
  */
 storeRouter.route("/").get(isLoggedIn, storeController.getAllStores);
 
@@ -31,6 +33,7 @@ storeRouter.route("/").get(isLoggedIn, storeController.getAllStores);
  * @ROUTE {{URL}}/api/v1/store
  * @METHOD GET
  * @PARAMS id
+ * @ACCESS Protected
  */
 storeRouter.route("/:id").get(isLoggedIn, storeController.getStoreById);
 

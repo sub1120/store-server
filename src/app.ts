@@ -24,9 +24,9 @@ expressApp.use(
 expressApp.use("/api/v1", appRouter);
 
 /**
- * @SERVER_STATUS
- * @ROUTE @GET {{URL}}/api/ping
- * @DESC Returns response 200 with message pong if api is working
+ * @ROUTE {{URL}}/api/ping
+ * @METHOD GET
+ * @PARAMS NA
  * @ACCESS Public
  */
 expressApp.get("/api/ping", (req, res) => {
