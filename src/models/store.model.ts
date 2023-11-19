@@ -114,6 +114,7 @@ const storeSchema = new mongoose.Schema<IStore>({
         type: storeTimeSchema,
       },
     },
+    _id: false,
   },
 
   description: {

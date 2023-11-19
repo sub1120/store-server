@@ -1,17 +1,16 @@
 import asyncHandler from "@/middlewares/asyncHandler.middleware";
 import storeService from "@/services/store.service";
-import AppErr from "@/utils/appErr";
 import commonResponse from "@/utils/commonResponse";
+import HTTP_STATUS from "@/utils/httpStatus";
 
+/***********************************************************************
+ * @CREATE_STORE
+ * @DESCRIPTION Controller for creating new store
+ * @INPUTS name, address, phoneNumber, email, timing, description
+ * @RETURNS Store
+ ***********************************************************************/
 const createStore = asyncHandler(async (req, res) => {
   const { name, address, phoneNumber, email, timing, description } = req.body;
-
-  if (!name || !address || !phoneNumber || !email || !timing || !description) {
-    throw new AppErr(
-      "Please provide all detail { name, address, phoneNumber, email, timing, description }",
-      401,
-    );
-  }
 
   const store = await storeService.create(
     name,
@@ -22,16 +21,32 @@ const createStore = asyncHandler(async (req, res) => {
     description,
   );
 
-  return commonResponse(res, "Store created successfully", store);
+  return commonResponse(
+    res,
+    "Store Created Successfully",
+    store,
+    HTTP_STATUS.CREATED,
+  );
 });
 
+/***********************************************************************
+ * @GET_ALL_STORES
+ * @DESCRIPTION Controller to fetch all stores
+ * @INPUTS NA
+ * @RETURNS All stores
+ ***********************************************************************/
 const getAllStores = asyncHandler(async (req, res) => {
-  const stores = await storeService.getAll();
+  const allStores = await storeService.getAll();
 
-  const updatedStores = stores.map((item) => {
-    const storeCurrentStatus = storeService.getStoreStatus(item.timing);
+  //check for empty
+  if (allStores.length === 0) {
+    return commonResponse(res, "No Store Exists", {}, HTTP_STATUS.NO_CONTENT);
+  }
 
-    return {
+  //update store status(open/close)
+  const updatedStores = allStores.map((item) => {
+    const storeStatus = storeService.getStoreStatus(item.timing);
+    const store = {
       _id: item._id,
       name: item.name,
       address: item.address,
@@ -39,34 +54,54 @@ const getAllStores = asyncHandler(async (req, res) => {
       email: item.email,
       timing: item.timing,
       description: item.description,
-      storeStatus: storeCurrentStatus,
+      storeStatus: storeStatus,
     };
+
+    return store;
   });
 
-  return commonResponse(res, "Stores feched successfully", updatedStores);
+  return commonResponse(
+    res,
+    "Stores Feched Successfully",
+    updatedStores,
+    HTTP_STATUS.OK,
+  );
 });
 
+/***********************************************************************
+ * @GET_STORE_BY_ID
+ * @DESCRIPTION Controller to fetch store by id
+ * @INPUTS id
+ * @RETURNS A store
+ ***********************************************************************/
 const getStoreById = asyncHandler(async (req, res) => {
   const id = req.params.id;
   const store = await storeService.getById(id);
-  if (store) {
-    const storeCurrentStatus = storeService.getStoreStatus(store.timing);
 
-    const updatedStore = {
-      _id: store._id,
-      name: store.name,
-      address: store.address,
-      phoneNumber: store.phoneNumber,
-      email: store.email,
-      timing: store.timing,
-      description: store.description,
-      storeStatus: storeCurrentStatus,
-    };
-
-    return commonResponse(res, "Store feched successfully", updatedStore);
+  //check for empty
+  if (!store) {
+    return commonResponse(res, "Store Not Found", {}, HTTP_STATUS.NOT_FOUND);
   }
 
-  return commonResponse(res, "Store Not Found", {});
+  const storeStatus = storeService.getStoreStatus(store.timing);
+
+  const updatedStore = {
+    _id: store._id,
+    name: store.name,
+    address: store.address,
+    phoneNumber: store.phoneNumber,
+    email: store.email,
+    timing: store.timing,
+    description: store.description,
+    storeStatus: storeStatus,
+  };
+
+  return commonResponse(
+    res,
+    "Store Feched Successfully",
+    updatedStore,
+    HTTP_STATUS.OK,
+  );
 });
 
 export default {

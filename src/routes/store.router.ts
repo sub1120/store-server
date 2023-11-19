@@ -9,6 +9,8 @@ const storeRouter = Router();
 
 /**
  * @ROUTE {{URL}}/api/v1/store
+ * @METHOD GET
+ * @PARAMS NA
  */
 storeRouter
   .route("/")
@@ -20,14 +22,16 @@ storeRouter
 
 /**
  * @ROUTE {{URL}}/api/v1/store
+ * @METHOD GET
+ * @PARAMS NA
  */
-
 storeRouter.route("/").get(isLoggedIn, storeController.getAllStores);
 
 /**
  * @ROUTE {{URL}}/api/v1/store
+ * @METHOD GET
+ * @PARAMS id
  */
-
 storeRouter.route("/:id").get(isLoggedIn, storeController.getStoreById);
 
 export default storeRouter;
