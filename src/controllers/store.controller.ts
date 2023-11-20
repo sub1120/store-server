@@ -43,27 +43,10 @@ const getAllStores = asyncHandler(async (req, res) => {
     return commonResponse(res, "No Store Exists", {}, HTTP_STATUS.NO_CONTENT);
   }
 
-  //update store status(open/close)
-  const updatedStores = allStores.map((item) => {
-    const storeStatus = storeService.getStoreStatus(item.timing);
-    const store = {
-      _id: item._id,
-      name: item.name,
-      address: item.address,
-      phoneNumber: item.phoneNumber,
-      email: item.email,
-      timing: item.timing,
-      description: item.description,
-      storeStatus: storeStatus,
-    };
-
-    return store;
-  });
-
   return commonResponse(
     res,
     "Stores Feched Successfully",
-    updatedStores,
+    allStores,
     HTTP_STATUS.OK,
   );
 });
@@ -83,23 +66,10 @@ const getStoreById = asyncHandler(async (req, res) => {
     return commonResponse(res, "Store Not Found", {}, HTTP_STATUS.NOT_FOUND);
   }
 
-  //update store status(open/close)
-  const storeStatus = storeService.getStoreStatus(store.timing);
-  const updatedStore = {
-    _id: store._id,
-    name: store.name,
-    address: store.address,
-    phoneNumber: store.phoneNumber,
-    email: store.email,
-    timing: store.timing,
-    description: store.description,
-    storeStatus: storeStatus,
-  };
-
   return commonResponse(
     res,
     "Store Feched Successfully",
-    updatedStore,
+    store,
     HTTP_STATUS.OK,
   );
 });
